@@ -102,7 +102,7 @@ def process_range(args):
 def convert_multithreaded(args, num_cores=None):
     # Create jobs for the job pool
     zim = Archive(args.zim_file)
-    batch_size = 5000
+    batch_size = 10000
     end = zim.entry_count
 
     tasks = [(start_i,
@@ -111,7 +111,7 @@ def convert_multithreaded(args, num_cores=None):
               ) for start_i in range(0, end, batch_size)
              ]
 
-    print("Created tasks")
+    print(f'Created tasks for {end} entries')
 
     # Process jobs with pool
     with Pool(num_cores) as pool:
